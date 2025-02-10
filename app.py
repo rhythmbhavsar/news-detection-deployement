@@ -53,7 +53,7 @@ def predict():
     try:
         data = request.get_json()
         input_text = data.get('text', '')
-
+        print(input_text)
         if not input_text:
             return jsonify({'error': 'Input text is missing'}), 400
 
@@ -66,9 +66,11 @@ def predict():
         X_input_padded = pad_sequences(X_input_seq, maxlen=max_sequence_length)
 
         # Get predictions
+        print("Starting prediction")
         predictions = model.predict(X_input_padded)
+        print(str(predictions))
         predicted_class = label_encoder.inverse_transform([predictions.argmax()])[0]
-
+        print(predicted_class)
         return jsonify({'predicted_class': predicted_class})
 
     except Exception as e:
