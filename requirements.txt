@@ -5,3 +5,4 @@ nltk
 joblib
 gunicorn
 tensorflow
+scikit-learn
