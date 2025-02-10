@@ -80,11 +80,11 @@ def predict():
         print(f"Received text: {input_text}")
 
         # Preprocess the input text
-        input_text_processed = preprocess_text(input_text)
+        #input_text_processed = preprocess_text(input_text)
 
         # Prepare the input sequence for the model
         max_sequence_length = 50
-        X_input_seq = tokenizer.texts_to_sequences([input_text_processed])
+        X_input_seq = tokenizer.texts_to_sequences([input_text])
         X_input_padded = pad_sequences(X_input_seq, maxlen=max_sequence_length)
 
         # Get predictions
@@ -98,6 +98,7 @@ def predict():
         return jsonify({'predicted_class': predicted_class})
 
     except Exception as e:
+        print(str(e))
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
