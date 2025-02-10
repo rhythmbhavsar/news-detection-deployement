@@ -4,3 +4,4 @@ keras
 nltk
 joblib
 gunicorn
+tensorflow
