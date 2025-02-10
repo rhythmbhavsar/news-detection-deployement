@@ -52,7 +52,8 @@ def predict():
     """Predicts the class of the input text."""
     try:
         print("Running predict")
-        input_text = request.form['text']
+        data = request.get_json()
+        input_text = data['text']
         print(input_text)
         if not input_text:
             return jsonify({'error': 'Input text is missing'}), 400
