@@ -75,7 +75,9 @@ def echo():
             return jsonify({'error': 'Missing "text" field in request body'}), 400
         
         input_text = data['text']
-        print(f"Received input: {input_text}")
+        input_text_processed = preprocess_text(input_text)
+
+        print(f"Received input: {input_text_processed}")
         
         return jsonify({'received_text': input_text})
 
@@ -103,11 +105,11 @@ def predict():
         print(f"Received text: {input_text}")
 
         # Preprocess the input text
-        input_text_processed = preprocess_text(input_text)
+        # input_text_processed = preprocess_text(input_text)
 
         # Prepare the input sequence for the model
         max_sequence_length = 50
-        X_input_seq = tokenizer.texts_to_sequences([input_text_processed])
+        X_input_seq = tokenizer.texts_to_sequences([input_text])
         X_input_padded = pad_sequences(X_input_seq, maxlen=max_sequence_length)
 
         # Get predictions
