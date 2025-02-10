@@ -45,12 +45,13 @@ def preprocess_text(text):
 @app.route('/', methods=['GET'])
 def welcome():
     """Welcome route for the API."""
-    return "Welcome to the Text Prediction API! Use the '/predict' endpoint to get predictions."
+    return "Welcome to the Text Prediction API! Use the '/predict' endpoint to get prediction."
 
 @app.route('/predict', methods=['POST'])
 def predict():
     """Predicts the class of the input text."""
     try:
+        print("Running predict")
         data = request.get_json()
         input_text = data['text']
         print(input_text)
