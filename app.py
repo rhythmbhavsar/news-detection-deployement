@@ -39,10 +39,10 @@ except FileNotFoundError:
 def preprocess_text(text):
     """Preprocesses the input text by tokenizing, removing stopwords, and lemmatizing."""
     tokens = nltk.word_tokenize(text)
-    stop_words = set(stopwords.words('english'))
-    filtered_tokens = [token for token in tokens if token not in stop_words]
+    #stop_words = set(stopwords.words('english'))
+    #filtered_tokens = [token for token in tokens if token not in stop_words]
     lemmatizer = WordNetLemmatizer()
-    lemmatized_tokens = [lemmatizer.lemmatize(token) for token in filtered_tokens]
+    lemmatized_tokens = [lemmatizer.lemmatize(token) for token in tokens]
     return ' '.join(lemmatized_tokens)
 
 @app.route('/', methods=['GET'])
