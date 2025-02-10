@@ -11,11 +11,8 @@ import os
 
 # Download necessary NLTK data and handle potential errors
 try:
-    print("NLTK Starting download")
     NLTK_DATA_PATH = os.path.join(os.path.dirname(__file__), 'nltk_data')
-    print(NLTK_DATA_PATH)
     nltk.data.path.append(NLTK_DATA_PATH)
-    print("NLTK Diwnloaded")
 except Exception as e:
     print(f"Error downloading NLTK data: {e}")
     raise
@@ -39,10 +36,10 @@ except FileNotFoundError:
 def preprocess_text(text):
     """Preprocesses the input text by tokenizing, removing stopwords, and lemmatizing."""
     tokens = nltk.word_tokenize(text)
-    #stop_words = set(stopwords.words('english'))
-    #filtered_tokens = [token for token in tokens if token not in stop_words]
+    stop_words = set(stopwords.words('english'))
+    filtered_tokens = [token for token in tokens if token not in stop_words]
     lemmatizer = WordNetLemmatizer()
-    lemmatized_tokens = [lemmatizer.lemmatize(token) for token in tokens]
+    lemmatized_tokens = [lemmatizer.lemmatize(token) for token in filtered_tokens]
     return ' '.join(lemmatized_tokens)
 
 @app.route('/', methods=['GET'])
@@ -75,8 +72,7 @@ def predict():
         return jsonify({'predicted_class': predicted_class})
 
     except Exception as e:
-        print(str(e))
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run()
