@@ -15,6 +15,7 @@ nltk.data.path.append(NLTK_DATA_PATH)
 
 try:
     nltk.download('punkt', download_dir=NLTK_DATA_PATH)
+    nltk.download('punkt_tab', download_dir=NLTK_DATA_PATH)
     nltk.download('stopwords', download_dir=NLTK_DATA_PATH)
     nltk.download('wordnet', download_dir=NLTK_DATA_PATH)
 except Exception as e:
