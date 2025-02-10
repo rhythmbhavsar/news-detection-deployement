@@ -52,10 +52,10 @@ def preprocess_text(text):
         return ""
 
     tokens = nltk.word_tokenize(text.lower())
-    stop_words = set(stopwords.words('english'))
-    filtered_tokens = [token for token in tokens if token.isalpha() and token not in stop_words]
-    lemmatizer = WordNetLemmatizer()
-    lemmatized_tokens = [lemmatizer.lemmatize(token) for token in filtered_tokens]
+    # stop_words = set(stopwords.words('english'))
+    # filtered_tokens = [token for token in tokens if token.isalpha() and token not in stop_words]
+    # lemmatizer = WordNetLemmatizer()
+    # lemmatized_tokens = [lemmatizer.lemmatize(token) for token in filtered_tokens]
     return ' '.join(tokens)
 
 @app.route('/', methods=['GET'])
