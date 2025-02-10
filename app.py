@@ -63,6 +63,28 @@ def welcome():
     """Welcome route for the API."""
     return "Welcome to the Text Prediction API! Use the '/predict' endpoint to get predictions."
 
+
+
+@app.route('/echo', methods=['POST'])
+def echo():
+    """A simple route to return the input text."""
+    try:
+        data = request.get_json()
+        
+        if 'text' not in data:
+            return jsonify({'error': 'Missing "text" field in request body'}), 400
+        
+        input_text = data['text']
+        print(f"Received input: {input_text}")
+        
+        return jsonify({'received_text': input_text})
+
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+
+
+
 @app.route('/predict', methods=['POST'])
 def predict():
     """Predicts the class of the input text."""
