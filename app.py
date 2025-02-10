@@ -11,8 +11,11 @@ import os
 
 # Download necessary NLTK data and handle potential errors
 try:
+    print("NLTK Starting download")
     NLTK_DATA_PATH = os.path.join(os.path.dirname(__file__), 'nltk_data')
+    print(NLTK_DATA_PATH)
     nltk.data.path.append(NLTK_DATA_PATH)
+    print("NLTK Diwnloaded")
 except Exception as e:
     print(f"Error downloading NLTK data: {e}")
     raise
@@ -72,6 +75,7 @@ def predict():
         return jsonify({'predicted_class': predicted_class})
 
     except Exception as e:
+        print(str(e))
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
