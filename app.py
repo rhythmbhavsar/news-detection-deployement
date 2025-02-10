@@ -67,13 +67,13 @@ def welcome():
 def predict():
     """Predicts the class of the input text."""
     print("Running predict")
+    data = request.get_json()
+    if 'text' not in data:
+        return jsonify({'error': 'Missing "text" field in request body'}), 400
+
+    input_text = data['text']
     try:
-        data = request.get_json()
-
-        if 'text' not in data:
-            return jsonify({'error': 'Missing "text" field in request body'}), 400
-
-        input_text = data['text']
+       
 
         if not input_text or not isinstance(input_text, str):
             return jsonify({'error': 'Input text is missing or invalid'}), 400
