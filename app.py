@@ -51,11 +51,11 @@ def preprocess_text(text):
         return ""
 
     tokens = nltk.word_tokenize(text.lower())
-    stop_words = set(stopwords.words('english'))
-    filtered_tokens = [token for token in tokens if token.isalpha() and token not in stop_words]
-    lemmatizer = WordNetLemmatizer()
-    lemmatized_tokens = [lemmatizer.lemmatize(token) for token in filtered_tokens]
-    return ' '.join(lemmatized_tokens)
+    # stop_words = set(stopwords.words('english'))
+    # filtered_tokens = [token for token in tokens if token.isalpha() and token not in stop_words]
+    # lemmatizer = WordNetLemmatizer()
+    # lemmatized_tokens = [lemmatizer.lemmatize(token) for token in filtered_tokens]
+    return ' '.join(tokens)
 
 @app.route('/', methods=['GET'])
 def welcome():
@@ -80,11 +80,11 @@ def predict():
         print(f"Received text: {input_text}")
 
         # Preprocess the input text
-        #input_text_processed = preprocess_text(input_text)
+        input_text_processed = preprocess_text(input_text)
 
         # Prepare the input sequence for the model
         max_sequence_length = 50
-        X_input_seq = tokenizer.texts_to_sequences([input_text])
+        X_input_seq = tokenizer.texts_to_sequences([input_text_processed])
         X_input_padded = pad_sequences(X_input_seq, maxlen=max_sequence_length)
 
         # Get predictions
