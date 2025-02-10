@@ -61,11 +61,11 @@ def predict():
             return jsonify({'error': 'Input text is missing'}), 400
 
         # Preprocess the input text
-        input_text_processed = preprocess_text(input_text)
+        #input_text_processed = preprocess_text(input_text)
 
         # Prepare the input sequence for the model
         max_sequence_length = 50
-        X_input_seq = tokenizer.texts_to_sequences([input_text_processed])
+        X_input_seq = tokenizer.texts_to_sequences([input_text])
         X_input_padded = pad_sequences(X_input_seq, maxlen=max_sequence_length)
 
         # Get predictions
