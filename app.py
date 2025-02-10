@@ -8,10 +8,14 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
-# Download necessary NLTK data
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('wordnet')
+# Download necessary NLTK data and handle potential errors
+try:
+    nltk.download('punkt')
+    nltk.download('stopwords')
+    nltk.download('wordnet')
+except Exception as e:
+    print(f"Error downloading NLTK data: {e}")
+    raise
 
 app = Flask(__name__)
 
