@@ -7,12 +7,12 @@ from keras.utils import to_categorical
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+import os
 
 # Download necessary NLTK data and handle potential errors
 try:
-    nltk.download('punkt')
-    nltk.download('stopwords')
-    nltk.download('wordnet')
+    NLTK_DATA_PATH = os.path.join(os.path.dirname(__file__), 'nltk_data')
+    nltk.data.path.append(NLTK_DATA_PATH)
 except Exception as e:
     print(f"Error downloading NLTK data: {e}")
     raise
@@ -45,7 +45,7 @@ def preprocess_text(text):
 @app.route('/', methods=['GET'])
 def welcome():
     """Welcome route for the API."""
-    return "Welcome to the Text Prediction API! Use the '/predict' endpoint to get prediction."
+    return "Welcome to the Text Prediction API! Use the '/predict' endpoint to get predictions."
 
 @app.route('/predict', methods=['POST'])
 def predict():
