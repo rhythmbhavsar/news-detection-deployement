@@ -66,8 +66,8 @@ def welcome():
 @app.route('/predict', methods=['POST'])
 def predict():
     """Predicts the class of the input text."""
+    print("Running predict")
     try:
-        print("Running predict")
         data = request.get_json()
 
         if 'text' not in data:
@@ -95,7 +95,6 @@ def predict():
 
         predicted_class = label_encoder.inverse_transform([predictions.argmax()])[0]
         print(f"Predicted class: {predicted_class}")
-
         return jsonify({'predicted_class': predicted_class})
 
     except Exception as e:
