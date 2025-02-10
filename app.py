@@ -12,7 +12,7 @@ import os
 # Ensure necessary NLTK data is available
 NLTK_DATA_PATH = os.path.join(os.path.dirname(__file__), 'nltk_data')
 nltk.data.path.append(NLTK_DATA_PATH)
-
+print(str(NLTK_DATA_PATH))
 try:
     nltk.download('punkt', download_dir=NLTK_DATA_PATH)
     nltk.download('punkt_tab', download_dir=NLTK_DATA_PATH)
@@ -52,10 +52,10 @@ def preprocess_text(text):
         return ""
 
     tokens = nltk.word_tokenize(text.lower())
-    # stop_words = set(stopwords.words('english'))
-    # filtered_tokens = [token for token in tokens if token.isalpha() and token not in stop_words]
-    # lemmatizer = WordNetLemmatizer()
-    # lemmatized_tokens = [lemmatizer.lemmatize(token) for token in filtered_tokens]
+    stop_words = set(stopwords.words('english'))
+    filtered_tokens = [token for token in tokens if token.isalpha() and token not in stop_words]
+    lemmatizer = WordNetLemmatizer()
+    lemmatized_tokens = [lemmatizer.lemmatize(token) for token in filtered_tokens]
     return ' '.join(tokens)
 
 @app.route('/', methods=['GET'])
